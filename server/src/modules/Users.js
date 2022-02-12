@@ -37,7 +37,7 @@ export default class Users {
         `;
       const [{ insertId }] = await connection.query(query, [email, password]);
 
-      return new User({ id: insertId, email, password });
+      return new Users({ id: insertId, email, password });
     } catch (e) {
       console.log("Couldn't create user", e);
       throw e;
@@ -53,7 +53,7 @@ export default class Users {
 
       if (!user) return null;
 
-      return new User({ ...user });
+      return new Users({ ...user });
     } catch (e) {
       console.log(`Couldn't get user with email: ${email}`, e);
       throw e;

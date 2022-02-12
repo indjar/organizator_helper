@@ -29,7 +29,7 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const user = await Users.oneByEmail(email);
+        const user = await Users.login(email);
 
         const error = "Couldn't login";
 
