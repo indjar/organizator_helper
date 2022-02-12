@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { hash, compare } from "bcrypt";
 import jwt from "jsonwebtoken";
-import User from "../../models/User.js";
+import Users from "../../modules/Users.js";
 import { config } from "dotenv";
 
 config();
@@ -13,7 +13,7 @@ router.post("/register", async (req, res) => {
     const hashed = await hash(password, 10);
 
     try {
-        const user = await User.create({ email, password: hashed });
+        const user = await Users.create({ email, password: hashed });
 
         res.status(200).send({
             user
@@ -29,7 +29,7 @@ router.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const user = await User.oneByEmail(email);
+        const user = await Users.oneByEmail(email);
 
         const error = "Couldn't login";
 

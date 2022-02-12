@@ -2,8 +2,8 @@ import express from "express";
 import cors from "cors";
 import { config } from "dotenv";
 import { createConnection } from "mysql2/promise";
-import User from "./modules/Users";
-import usersRoute from "./routes/v1/users"
+import Users from "./modules/Users.js";
+import usersRoute from "./routes/v1/users.js"
 
 config();
 
@@ -27,13 +27,13 @@ const main = async () => {
         host: MYSQL_HOST,
         port: MYSQL_PORT,
         user: MYSQL_USER,
-        pasword: MYSQL_PW,
+        password: MYSQL_PW,
         database: MYSQL_DB
     });
 
     try {
 
-        await User.init();
+        await Users.init();
 
         app.sql = connection;
 
@@ -56,4 +56,6 @@ const main = async () => {
 
 
 
-}
+};
+
+main();

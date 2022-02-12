@@ -1,6 +1,6 @@
 import { getConnection } from "../database/mysql.js";
 
-export default class User {
+export default class Users {
   constructor({ id, email, password }) {
     this.id = id;
     this.email = email;
