@@ -4,8 +4,13 @@ import { config } from "dotenv";
 import { createConnection } from "mysql2/promise";
 import Users from "./modules/Users.js";
 import Participants from "./modules/Participants.js";
+import Events from "./modules/Events.js";
+import EventParcipiants from "./modules/EventParcipiants.js";
 import usersRoute from "./routes/v1/users.js";
 import participantsRoute from "./routes/v1/participants.js";
+import eventsRoute from "./routes/v1/events.js";
+import eventsParcipiantsRoute from "./routes/v1/eventParcipiants.js";
+
 
 config();
 
@@ -37,11 +42,15 @@ const main = async () => {
 
         await Users.init();
         await Participants.init();
+        await Events.init();
+        await EventParcipiants.init();
 
         app.sql = connection;
 
         app.use("/users", usersRoute);
         app.use("/participants", participantsRoute);
+        app.use("/events", eventsRoute);
+        app.use ("/eventParticipiants", eventsParcipiantsRoute);
 
         app.listen(8080, () => {
             console.log("http://localhost:8080 started")
