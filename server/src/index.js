@@ -3,7 +3,9 @@ import cors from "cors";
 import { config } from "dotenv";
 import { createConnection } from "mysql2/promise";
 import Users from "./modules/Users.js";
-import usersRoute from "./routes/v1/users.js"
+import Participants from "./modules/Participants.js";
+import usersRoute from "./routes/v1/users.js";
+import participantsRoute from "./routes/v1/participants.js";
 
 config();
 
@@ -34,10 +36,12 @@ const main = async () => {
     try {
 
         await Users.init();
+        await Participants.init();
 
         app.sql = connection;
 
         app.use("/users", usersRoute);
+        app.use("/participants", participantsRoute);
 
         app.listen(8080, () => {
             console.log("http://localhost:8080 started")
