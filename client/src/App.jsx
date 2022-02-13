@@ -1,10 +1,20 @@
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from 'react-router-dom';
+import { AuthProvider } from "./components/AuthProvider"
 import './App.css';
+import { Nav } from "./organisms/Nav"
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <Router>
+      <AuthProvider>
+        <Nav />
+      </AuthProvider>
+    </Router>
   );
 }
 
