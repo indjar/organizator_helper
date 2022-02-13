@@ -49,6 +49,8 @@ export const Title3=styled(title3)`
     display:block
     text-align: center;
     overflow-wrap: break-word;
+    color:#D4AF37;
+    font-size: 28px;
 `
 ;
 export const Title1=styled(title1)`
