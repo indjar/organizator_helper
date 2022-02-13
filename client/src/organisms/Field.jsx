@@ -8,12 +8,15 @@ export const Field = ({label, ...rest}) => {
             <label style={{display: "block", 
                             fontSize: "1.6rem", 
                             fontWeight: "700", 
-                            marginBottom: "0.5rem"}} 
+                            marginBottom: "0.5rem",
+                        color:"#D4AF37"}} 
                     htmlFor={name}>{label || name}</label>
                 <input
                     style={{ appearance: "none",
                         backgroundColor: "transparent",
-                        border: "0.1rem solid #d1d1d1",
+                        border: "0.1rem solid #D4AF37",
+                        color:"#D4AF37 ",
+                        fontWeight:"500",
                         borderRadius: "0.4rem",
                         boxShadow: "none",
                         boxSizing: "inherit",
