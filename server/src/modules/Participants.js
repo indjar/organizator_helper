@@ -8,7 +8,7 @@ export default class Participants {
         this.email = email;
         this.birth = birth;
         this.aded_by = added_by;
-        this.age=age;
+        this.age = age;
     }
 
     static async init() {
@@ -60,11 +60,11 @@ export default class Participants {
                 (YEAR(current_date) - birth) AS age 
                 FROM participants p`;
             const [data] = await connection.query(query);
-            const [participants] = data;
-
+            const participants = data;
+            console.log(JSON.stringify(data))
             if (!participants) return null;
 
-            return new Participants({ ...participants });
+            return JSON.stringify(participants.map((email) => new Participants(email)));
         } catch (e) {
             console.log(`Couldn't get participants`, e);
             throw e;
@@ -83,6 +83,10 @@ export default class Participants {
       `;
 
             await connection.query(query, [name, surname, email, birth, id]);
+
+            if (id!==query.id){
+                return console.error('NULL');
+            }
             return new Participants({ name, surname, email, birth, id });
         } catch (error) {
             console.log(
@@ -103,6 +107,9 @@ export default class Participants {
       `;
 
             await connection.query(query, [id]);
+            if (id!==query.id){
+                return console.error('NULL');
+            }
             return new Participants({ id });
         } catch (error) {
             console.log(
