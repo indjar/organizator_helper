@@ -15,13 +15,18 @@ export const Nav = () => {
         </Link>
       </Button>
       <Button color="main">
-        <Link style={{ color: "#2F4F4F" }} to="/add">
-          Ask question
+        <Link style={{ color: "#2F4F4F" }} to="/form">
+          Add participant
+        </Link>
+      </Button>
+      <Button >
+        <Link style={{ color: "#D4AF37" }} to={`/addEvents`}>
+          Add event
         </Link>
       </Button>
       <Button color="main">
-        <Link style={{ color: "#2F4F4F" }} to={`/questions/${id}`}>
-          Your Questions
+        <Link style={{ color: "#2F4F4F" }} to={`/addToEventList`}>
+          Add participant to event
         </Link>
       </Button>
       <Button>
@@ -37,7 +42,7 @@ export const Nav = () => {
   ) : (
     <Navi>
       <Button color="main">
-        <Link style={{ color: "#2F4F4F" }} to="/login">
+        <Link style={{ color: "#2F4F4F" }} to="/">
           Login
         </Link>
       </Button>

@@ -1,4 +1,4 @@
-const AUTH_URL=`http://localhost:8080/v1/users/`;
+const AUTH_URL=`http://localhost:8080/users`;
 
 export class Auth {
     static async register (email, password) {
