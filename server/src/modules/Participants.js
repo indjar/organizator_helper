@@ -31,9 +31,9 @@ export default class Participants {
             await connection.query(query);
 
             console.log("Successfully created 'participants' table");
-        } catch (e) {
-            console.log("Couldn't init 'participants' to db", e);
-            throw e;
+        } catch (error) {
+            console.log("Couldn't init 'participants' to db", error);
+            throw error;
         }
     };
 
@@ -47,9 +47,9 @@ export default class Participants {
             const [{ insertId }] = await connection.query(query, [name, surname, email, birth, added_by]);
 
             return new Participants({ id: insertId, name, surname, email, birth, added_by });
-        } catch (e) {
-            console.log("Couldn't create participants", e);
-            throw e;
+        } catch (error) {
+            console.log("Couldn't create participants", error);
+            throw error;
         }
     };
 
@@ -65,9 +65,9 @@ export default class Participants {
             if (!participants) return null;
 
             return JSON.stringify(participants.map((email) => new Participants(email)));
-        } catch (e) {
-            console.log(`Couldn't get participants`, e);
-            throw e;
+        } catch (error) {
+            console.log(`Couldn't get participants`, error);
+            throw error;
         }
     };
 

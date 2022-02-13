@@ -21,9 +21,9 @@ export default class Events {
             await connection.query(query);
 
             console.log("Successfully created 'events' table");
-        } catch (e) {
-            console.log("Couldn't init 'events' to db", e);
-            throw e;
+        } catch (error) {
+            console.log("Couldn't init 'events' to db", error);
+            throw error;
         }
     };
 
@@ -37,9 +37,9 @@ export default class Events {
         const [{ insertId }] = await connection.query(query, [id, event]);
 
             return new Events({event});
-        } catch (e) {
-            console.log("Couldn't create event", e);
-            throw e;
+        } catch (error) {
+            console.log("Couldn't create event", error);
+            throw error;
         }
     };
 
@@ -53,9 +53,9 @@ export default class Events {
             if (!event) return null;
 
             return event.map((id) => new Events(id));
-        } catch (e) {
-            console.log(`Couldn't get events`, e);
-            throw e;
+        } catch (error) {
+            console.log(`Couldn't get events`, error);
+            throw error;
         }
     };
 

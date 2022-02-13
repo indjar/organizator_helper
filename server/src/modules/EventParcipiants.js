@@ -27,9 +27,9 @@ export default class EventParticipants {
             await connection.query(query);
 
             console.log("Successfully created 'event_participants' table");
-        } catch (e) {
-            console.log("Couldn't init 'event_participants' to db", e);
-            throw e;
+        } catch (error) {
+            console.log("Couldn't init 'event_participants' to db", error);
+            throw error;
         }
     };
 
@@ -47,9 +47,9 @@ export default class EventParticipants {
             if (event_date <= curent_date) return ({ error: `Incorect date ${event_date}` });
 
             return new EventParticipants({ id: insertId, participant_id, event_id, event_date });
-        } catch (e) {
-            console.log("Couldn't create participants", e);
-            throw e;
+        } catch (error) {
+            console.log("Couldn't create participants", error);
+            throw error;
         }
     };
 
@@ -66,9 +66,9 @@ export default class EventParticipants {
             if (!eventParticipants) return null;
 
             return new EventParticipants(eventParticipants);
-        } catch (e) {
-            console.log(`Couldn't get participants`, e);
-            throw e;
+        } catch (error) {
+            console.log(`Couldn't get participants`, error);
+            throw error;
         }
     };
 
@@ -86,9 +86,9 @@ export default class EventParticipants {
             if (!eventParticipants) return null;
 
             return new EventParticipants(eventParticipants);
-        } catch (e) {
-            console.log(`Couldn't get participants`, e);
-            throw e;
+        } catch (error) {
+            console.log(`Couldn't get participants`, error);
+            throw error;
         }
     };
 

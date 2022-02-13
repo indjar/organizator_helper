@@ -22,9 +22,9 @@ export default class Users {
       await connection.query(query);
 
       console.log("Successfully created 'users' table");
-    } catch (e) {
-      console.log("Couldn't init 'users' to db", e);
-      throw e;
+    } catch (error) {
+      console.log("Couldn't init 'users' to db", error);
+      throw error;
     }
   }
 
@@ -38,9 +38,9 @@ export default class Users {
       const [{ insertId }] = await connection.query(query, [email, password]);
 
       return new Users({ id: insertId, email, password });
-    } catch (e) {
-      console.log("Couldn't create user", e);
-      throw e;
+    } catch (error) {
+      console.log("Couldn't create user", error);
+      throw error;
     }
   }
 
@@ -54,9 +54,9 @@ export default class Users {
       if (!user) return null;
 
       return new Users({ ...user });
-    } catch (e) {
-      console.log(`Couldn't get user with email: ${email}`, e);
-      throw e;
+    } catch (error) {
+      console.log(`Couldn't get user with email: ${email}`, error);
+      throw error;
     }
   }
 }
