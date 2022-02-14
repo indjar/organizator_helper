@@ -32,16 +32,15 @@ export const AuthProvider = ({ children }) => {
         sessionStorage.setItem("token", res.token);
         return { token: res.token };
     };
-    console.log( {token} );
     const logout = () => {
-        console.log("logout")
+        console.log('logout')
         setState({
             token: null,
             error: null,
             email: null
         })
         sessionStorage.removeItem("token");
-        
+
     };
     const value = { ...state, login, logout };
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
