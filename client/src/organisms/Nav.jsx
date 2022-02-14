@@ -5,9 +5,8 @@ import { Header, Navbar, Title1, Navi, Item, Title3 } from "../ui/Navbar";
 
 export const Nav = () => {
   const auth = useAuth();
-  const id = auth.userId;
-  console.log(id);
-  const start = auth.token ? (
+
+  const start = auth.token !== undefined && auth.token !== null ? (
     <Navi>
       <Button>
         <Link style={{ color: "#D4AF37" }} to="/">
@@ -37,7 +36,7 @@ export const Nav = () => {
     </Navi>
   ) : null;
 
-  const buttons = auth.token ? (
+  const buttons = auth.token !== undefined && auth.token !== null ? (
     <Title3>Welcome, {auth.email}!</Title3>
   ) : (
     <Navi>
@@ -64,7 +63,7 @@ export const Nav = () => {
               as="img"
               src={`${process.env.PUBLIC_URL}/logo.jpg`}
               alt="logo"
-              style={{ maxHeight: "120px", maxWidth: "200px", padding:"20px" }}
+              style={{ maxHeight: "120px", maxWidth: "200px", padding: "20px" }}
             />
           </Link>
         </Title1>

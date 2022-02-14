@@ -12,7 +12,7 @@ export class Auth {
                 password,
             }),
         });
-
+        
         return res.json();
     }
 
