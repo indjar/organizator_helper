@@ -9,6 +9,8 @@ import './App.css';
 import { Nav } from "./organisms/Nav"
 import { Register } from './pages/Register';
 import { Login } from './pages/Login';
+import { Events } from './pages/Events';
+import {AddEvent} from './pages/AddEvent';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path='/events' element={<Events/>}></Route>
+          <Route path='/add_event' element={<AddEvent/>}></Route>
         </Routes>
       </AuthProvider>
     </Router>

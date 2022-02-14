@@ -49,14 +49,14 @@ router.post(
 );
 
 router.patch("/:id",
-    isLoggedIn,
     async (req, res) => {
         try {
             const id = Number(req.params.id);
-
             const { event } = req.body;
+            console.log(id, req.body.event)
            
             const data = await Events.update({
+                id,
                 event,
             });
         console.log(data)
@@ -74,7 +74,6 @@ router.patch("/:id",
     });
 
 router.delete("/:id",
-    isLoggedIn,
     async (req, res) => {
         try {
             const id = Number(req.params.id);

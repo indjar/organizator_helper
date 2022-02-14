@@ -19,7 +19,7 @@ export const Nav = () => {
         </Link>
       </Button>
       <Button >
-        <Link style={{ color: "#D4AF37" }} to={`/addEvents`}>
+        <Link style={{ color: "#D4AF37" }} to={`/add_event`}>
           Add event
         </Link>
       </Button>

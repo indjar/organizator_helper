@@ -62,7 +62,7 @@ export default class Events {
     static async update({ id, event }) {
         try {
             const connection = await getConnection();
-            console.log(id ,event);
+            //console.log(id ,event);
             const query = `
         UPDATE events
         SET event=?
@@ -70,9 +70,7 @@ export default class Events {
         ;
       `;
             await connection.query(query, [event, id]);
-            if (id!==query.id){
-                return console.error('NULL');
-            }
+           
             return new Events({ event, id });
         } catch (error) {
             console.log(
