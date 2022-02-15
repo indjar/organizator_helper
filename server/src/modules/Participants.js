@@ -38,6 +38,7 @@ export default class Participants {
     };
 
     static async create({ name, surname, email, birth, added_by }) {
+        console.log(name, surname, email, birth, added_by)
         try {
             const connection = await getConnection();
             const query = `

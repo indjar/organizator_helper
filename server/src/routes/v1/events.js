@@ -51,9 +51,10 @@ router.post(
 router.patch("/:id",
     async (req, res) => {
         try {
+
             const id = Number(req.params.id);
             const { event } = req.body;
-            console.log(id, req.body.event)
+            console.log(id, event)
            
             const data = await Events.update({
                 id,
@@ -63,7 +64,7 @@ router.patch("/:id",
             if (!data) {
                 return res.status(400).send({ error: `No event with ${id}` });
             }
-            res.status(204).send({
+            res.status(200).send({
                 message: `Event ${data.id} updated`,
             });
         } catch (error) {

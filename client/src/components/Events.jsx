@@ -1,19 +1,16 @@
-import { useParams } from "react-router-dom";
 import { Block, Title3, Form, Container } from "../ui/Main";
 import { Button } from "../ui/Button";
 import { useEffect, useState } from "react";
 import { Field } from "../organisms/Field";
-import { useAuth } from "../hook/auth";
 import { EventsApi } from "../services/eventsApi.js";
 
 
 export const EventsDisplay = (events) => {
-    const { id } = useParams();
     const eventRes = events.event;
     const [eventState, setEventState] = useState([eventRes]);
 
     const [editMode, setEditMode] = useState();
-    const [eventInput, setEventInput] = useState(eventRes);
+    const [eventInput, setEventInput] = useState(eventRes.event);
 
     const onDelete = async () => {
         await EventsApi.delete(eventRes.id);
@@ -28,20 +25,21 @@ export const EventsDisplay = (events) => {
         e.preventDefault();
         try {
             const data = new FormData(e.target);
+            const id=eventRes.id
             const [event] = data.values();
-            const id = eventRes.id;
-            const res = await EventsApi.update({ id, event })
-            console.log(res)
-            if (res.error) throw new Error(res.error);
+            
+            const res = await EventsApi.update({ event }, id)
             console.log(res, id)
-            alert('Congrats added new event')
+            if (res.error) throw new Error(res.error);
+            alert('Congrats added new event');
+            
 
         } catch (error) {
             console.log(error)
             alert(error);
 
         }
-        window.location.reload();
+        //window.location.reload();
     };
 
 
@@ -51,7 +49,7 @@ export const EventsDisplay = (events) => {
 
 
     const cancelEdit = (e) => {
-        setEventInput(eventRes.event);
+        setEventInput(e.events);
         setEditMode(false);
     };
 
@@ -64,7 +62,7 @@ export const EventsDisplay = (events) => {
                     label="Event"
                     placeholder="Event"
                     name="event"
-                    value={eventInput.event}
+                    value={eventInput}
                     required
                 />
                 <Button type="submit">Update</Button>

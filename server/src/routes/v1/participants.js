@@ -25,14 +25,13 @@ router.post(
     "/",
     isLoggedIn,
     body(["name", "surname", "email", "birth"]).exists(),
-    body(["name", "surname", "email"]).isString(),
     body(["birth"]).isNumeric(),
     body(["email"]).isEmail(),
     validateErrorsMiddleware,
     async (req, res) => {
         try {
             const { name, surname, email, birth } = req.body;
-
+            console.log(req.body)
             const added_by = req.token.userId;
 
             const participant = await Participants.create({

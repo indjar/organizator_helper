@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { EventsApi } from "../services/eventsApi";
-import { List, Main, Title1, Title3 } from "../ui/Main";
-import { useParams } from "react-router-dom";
+import { List, Main, Title3 } from "../ui/Main";
 import { EventsDisplay } from "../components/Events";
 import { useAuth } from "../hook/auth";
 
 export const Events = () => {
     const {token}=useAuth();
-  const { id } = useParams();
   const [events, setEvent] = useState();
   const { state } = useLocation();
 
@@ -58,10 +56,10 @@ export const Events = () => {
     );
   }
 
-  const renderedEvents = events.map((eve) => (
+  const renderedEvents = events.map((event) => (
     <EventsDisplay
-      key={JSON.stringify(eve.id)}
-      event={eve}
+      key={JSON.stringify(event.id)}
+      event={event}
       onDelete={deleteEvent}
     />
   ));

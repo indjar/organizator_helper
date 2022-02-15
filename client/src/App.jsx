@@ -11,6 +11,7 @@ import { Register } from './pages/Register';
 import { Login } from './pages/Login';
 import { Events } from './pages/Events';
 import {AddEvent} from './pages/AddEvent';
+import {AddParticipant} from "./pages/AddParticipants";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
           <Route path='/events' element={<Events/>}></Route>
           <Route path='/add_event' element={<AddEvent/>}></Route>
+          <Route path='/add_participant' element={<AddParticipant/>}></Route>
         </Routes>
       </AuthProvider>
     </Router>

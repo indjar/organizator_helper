@@ -8,7 +8,6 @@ export class EventsApi {
                 authorization: `Bearer ${token}`,
             },
         });
-        console.log(res)
         return res.json();
     };
 
@@ -34,13 +33,15 @@ export class EventsApi {
         return res.json();
     };
 
-    static async update(event) {
-        console.log(JSON.stringify(event))
-        const res = await fetch(`${AUTH_URL}/${event.id}`, {
+    static async update(event, id) {
+        const res = await fetch(`${AUTH_URL}/${id}`, {
             method: "PATCH",
-           
+            headers: {
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify(event),
         });
+        console.log(res)
         return res.json();
     };
 }

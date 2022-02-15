@@ -14,7 +14,7 @@ export const Nav = () => {
         </Link>
       </Button>
       <Button color="main">
-        <Link style={{ color: "#2F4F4F" }} to="/form">
+        <Link style={{ color: "#2F4F4F" }} to="/add_participant">
           Add participant
         </Link>
       </Button>

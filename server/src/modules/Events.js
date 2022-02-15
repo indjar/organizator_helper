@@ -61,6 +61,7 @@ export default class Events {
 
     static async update({ id, event }) {
         try {
+            console.log(id,event)
             const connection = await getConnection();
             //console.log(id ,event);
             const query = `

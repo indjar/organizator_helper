@@ -13,7 +13,7 @@ router.get("/",
             
             const event = await EventParticipants.getAll();
 
-            res.status(204).send(event);
+            res.status(200).send(event);
         } catch (error) {
             res.status(500).send({
                 error: error.message,
@@ -28,7 +28,7 @@ router.get("/:id",
             const id = Number(req.params.id);
             const event = await EventParticipants.getByEvent(id);
 
-            res.status(204).send(event);
+            res.status(200).send(event);
         } catch (error) {
             res.status(500).send({
                 error: error.message,
@@ -55,7 +55,7 @@ router.post(
             if (!data) {
                 return res.status(400).send({ error: "Incorect data" });
             }
-            res.status(204).send({
+            res.status(200).send({
                 data,
             });
         } catch (error) {
@@ -85,7 +85,7 @@ router.patch("/:id",
             if (!dataEvent) {
                 return res.status(400).send({ error: `No event with ${id}` });
             }
-            res.status(204).send({
+            res.status(200).send({
                 message: `Event ${dataEvent.id} updated`,
             });
         } catch (error) {
@@ -103,7 +103,7 @@ router.delete("/:id",
         
             const data=await EventParticipants.delete({ id });
             console.log(data)
-            res.status(204).send({
+            res.status(200).send({
                 message:`${id} deleted`
             });
         } catch (error) {
