@@ -13,6 +13,7 @@ import { Events } from './pages/Events';
 import {AddEvent} from './pages/AddEvent';
 import {AddParticipant} from "./pages/AddParticipants";
 import {Participants} from "./pages/Participants";
+import {AddParticipantsEvent} from "./pages/AddParticipantEvent";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path='/add_event' element={<AddEvent/>}></Route>
           <Route path='/add_participant' element={<AddParticipant/>}></Route>
           <Route path='participants' element={<Participants/>}></Route>
+          <Route path='/addToEventList' element={<AddParticipantsEvent/>}></Route>
         </Routes>
       </AuthProvider>
     </Router>

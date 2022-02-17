@@ -1,14 +1,23 @@
-const AUTH_URL = `http://localhost:8080/participants`;
+const AUTH_URL = `http://localhost:8080/eventParticipiants`;
 
-export class ParticipantApi {
-  static async getAllParticipants(token) {
+export class ParticipantsEventsApi {
+  static async getAll(token) {
     const res = await fetch(`${AUTH_URL}`, {
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
       },
     });
-    console.log(res)
+    return res.json();
+  };
+
+  static async getByEventID(id,token) {
+    const res = await fetch(`${AUTH_URL}/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    });
     return res.json();
   }
 
@@ -24,7 +33,7 @@ export class ParticipantApi {
     });
 
     return res.json();
-  }
+  };
 
   static async delete(id, token) {
     return await fetch(`${AUTH_URL}/${id}`, {
@@ -34,9 +43,10 @@ export class ParticipantApi {
         authorization: `Bearer ${token}`,
       },
     });
-  }
+  };
 
   static async update(participant,id, token) {
+    console.log(participant)
     const res = await fetch(`${AUTH_URL}/${id}`, {
       method: "PATCH",
       headers: {
@@ -47,5 +57,5 @@ export class ParticipantApi {
     });
 
     return res.json();
-  }
+  };
 }

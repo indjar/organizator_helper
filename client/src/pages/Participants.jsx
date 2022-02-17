@@ -62,7 +62,7 @@ export const Participants = () => {
       onDelete={deleteParticipant}
     />
   ));
-  // console.log({})
+ 
   return (
     <Main>
       <div style={{ marginTop: "3rem" }}>
