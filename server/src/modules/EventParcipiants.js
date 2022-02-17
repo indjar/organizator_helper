@@ -59,7 +59,8 @@ export default class EventParticipants {
             const query = `SELECT e.event, ep.event_date, p.name, p.surname, p.email   
                 FROM event_participants ep
                 LEFT JOIN participants p on p.id=ep.participant_id
-                LEFT JOIN events e on e.id=ep.event_id`;
+                LEFT JOIN events e on e.id=ep.event_id
+                order by ep.event_date asc`;
             const [data] = await connection.query(query);
             const eventParticipants = data;
 

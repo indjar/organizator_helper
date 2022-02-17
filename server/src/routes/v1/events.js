@@ -54,13 +54,13 @@ router.patch("/:id",
 
             const id = Number(req.params.id);
             const { event } = req.body;
-            console.log(id, event)
+
            
             const data = await Events.update({
                 id,
                 event,
             });
-        console.log(data)
+
             if (!data) {
                 return res.status(400).send({ error: `No event with ${id}` });
             }

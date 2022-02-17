@@ -31,7 +31,7 @@ router.post(
     async (req, res) => {
         try {
             const { name, surname, email, birth } = req.body;
-            console.log(req.body)
+
             const added_by = req.token.userId;
 
             const participant = await Participants.create({
@@ -61,7 +61,7 @@ router.patch("/:id",
     async (req, res) => {
         try {
             const id = Number(req.params.id);
-            console.log(id);
+
             const { name, surname, email, birth } = req.body;
 
             const participant = await Participants.update({

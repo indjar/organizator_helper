@@ -62,7 +62,7 @@ export default class Participants {
                 FROM participants p`;
             const [data] = await connection.query(query);
             const participants = data;
-            console.log(JSON.stringify(data))
+ 
             if (!participants) return null;
 
             return JSON.stringify(participants.map((email) => new Participants(email)));
@@ -75,7 +75,7 @@ export default class Participants {
     static async update({ name, surname, email, birth, id }) {
         try {
             const connection = await getConnection();
-            console.log(name, surname, email, birth, id);
+
             const query = `
         UPDATE participants
         SET name=?, surname=?, email=?, birth=?
