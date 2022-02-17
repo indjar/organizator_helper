@@ -32,7 +32,7 @@ export const EventsDisplay = (events) => {
             console.log(res, id)
             if (res.error) throw new Error(res.error);
             alert('Congrats added new event');
-            
+            window.location.reload();
 
         } catch (error) {
             console.log(error)

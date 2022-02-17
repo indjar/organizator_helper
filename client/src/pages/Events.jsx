@@ -38,6 +38,7 @@ export const Events = () => {
 
     if (state.added) {
       addEvent(state.added);
+      
     }
   }, [state]);
 
