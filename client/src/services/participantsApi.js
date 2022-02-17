@@ -1,8 +1,13 @@
 const AUTH_URL = `http://localhost:8080/participants`;
 
 export class ParticipantApi {
-  static async getAllParticipants() {
-    const res = await fetch(`${AUTH_URL}`);
+  static async getAllParticipants(token) {
+    const res = await fetch(`${AUTH_URL}`, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    });
     return res.json();
   }
 
@@ -24,13 +29,15 @@ export class ParticipantApi {
     return await fetch(`${AUTH_URL}/${id}`, {
       method: "DELETE",
       headers: {
+        "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
       },
     });
   }
 
-  static async update(participant, token) {
-    const res = await fetch(`${AUTH_URL}/${participant.id}`, {
+  static async update(participant,id, token) {
+    console.log(participant)
+    const res = await fetch(`${AUTH_URL}/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

@@ -85,9 +85,6 @@ export default class Participants {
 
             await connection.query(query, [name, surname, email, birth, id]);
 
-            if (id!==query.id){
-                return console.error('NULL');
-            }
             return new Participants({ name, surname, email, birth, id });
         } catch (error) {
             console.log(

@@ -4,11 +4,12 @@ import { ParticipantApi } from "../services/participantsApi.js";
 import { Container, Form, Title3 } from "../ui/Main";
 import { Button } from "../ui/Button";
 import { Field } from "../organisms/Field";
-import { useState } from "react";
+
 
 export const AddParticipant = () => {
     const auth = useAuth();
     const navigate = useNavigate();
+  
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,10 +22,14 @@ export const AddParticipant = () => {
             if (!name.length || !surname.length || !email.length || !birth.length )
                 return console.error('Please enter data');
             const res = await ParticipantApi.create({ name, surname, email, birth }, auth.token)
-            console.log(res, auth)
-            if (res.error) throw new Error(res.error);
+
+            if (res.error) {
+                throw new Error(res.error[0].msg);
+            }
+            else{
             alert('Congrats added new participant');
             navigate("/participants")
+            }
 
         } catch (error) {
             alert(error);
@@ -36,6 +41,7 @@ export const AddParticipant = () => {
 
     return (
         <Container>
+            
             <Form onSubmit={handleSubmit}>
                 <Title3>Add new participant</Title3>
                 <Field
