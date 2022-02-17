@@ -85,5 +85,6 @@ export const List= styled(list)`
 `
 export const Paragra= styled(paragra)`
     overflow-wrap: break-word;
+    color:#D4AF37;
 `
 ;
