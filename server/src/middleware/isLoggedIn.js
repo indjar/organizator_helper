@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const isLoggedIn = (req, res, next) => {
-    const {authorization} = req.headers;
-    const {TOKEN_SECRET} = process.env;
+    const { authorization } = req.headers;
+    const { TOKEN_SECRET } = process.env;
 
     if (!authorization) {
         return res.sendStatus(403);

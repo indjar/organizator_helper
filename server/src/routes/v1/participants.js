@@ -25,7 +25,6 @@ router.post(
     "/",
     isLoggedIn,
     body(["name", "surname", "email", "birth"]).exists(),
-    body(["name", "surname", "email"]).isString(),
     body(["birth"]).isNumeric(),
     body(["email"]).isEmail(),
     validateErrorsMiddleware,
@@ -62,7 +61,7 @@ router.patch("/:id",
     async (req, res) => {
         try {
             const id = Number(req.params.id);
-            console.log(id);
+
             const { name, surname, email, birth } = req.body;
 
             const participant = await Participants.update({
@@ -76,7 +75,7 @@ router.patch("/:id",
             if (!participant) {
                 return res.status(400).send({ error: `No participant with ${id}` });
             }
-            
+
             res.send({
                 message: `Updated ${participant.id}`,
             });

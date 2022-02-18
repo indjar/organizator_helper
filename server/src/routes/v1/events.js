@@ -29,7 +29,7 @@ router.post(
     async (req, res) => {
         try {
             const { event } = req.body;
-            
+
             const data = await Events.create({
                 event
             });
@@ -49,21 +49,22 @@ router.post(
 );
 
 router.patch("/:id",
-    isLoggedIn,
     async (req, res) => {
         try {
-            const id = Number(req.params.id);
 
+            const id = Number(req.params.id);
             const { event } = req.body;
-           
+
+
             const data = await Events.update({
+                id,
                 event,
             });
-        console.log(data)
+
             if (!data) {
                 return res.status(400).send({ error: `No event with ${id}` });
             }
-            res.status(204).send({
+            res.status(200).send({
                 message: `Event ${data.id} updated`,
             });
         } catch (error) {
@@ -74,7 +75,6 @@ router.patch("/:id",
     });
 
 router.delete("/:id",
-    isLoggedIn,
     async (req, res) => {
         try {
             const id = Number(req.params.id);
