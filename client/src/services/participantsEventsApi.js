@@ -8,10 +8,23 @@ export class ParticipantsEventsApi {
         authorization: `Bearer ${token}`,
       },
     });
+    console.log(res)
     return res.json();
   };
 
-  static async getByEventID(id,token) {
+  static async getStructuredEventList(token) {
+    const res = await fetch(`${AUTH_URL}/structured`, {
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(res)
+    return res.json();
+  };
+
+  static async getByEventID(id, token) {
+    console.log(id, token)
     const res = await fetch(`${AUTH_URL}/${id}`, {
       headers: {
         "Content-Type": "application/json",
@@ -22,14 +35,14 @@ export class ParticipantsEventsApi {
   }
 
   static async create(participant, token) {
-      console.log( participant )
+    console.log(participant)
     const res = await fetch(`${AUTH_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify( participant ),
+      body: JSON.stringify(participant),
     });
 
     return res.json();
@@ -43,19 +56,5 @@ export class ParticipantsEventsApi {
         authorization: `Bearer ${token}`,
       },
     });
-  };
-
-  static async update(participant,id, token) {
-    console.log(participant)
-    const res = await fetch(`${AUTH_URL}/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(participant),
-    });
-
-    return res.json();
   };
 }

@@ -7,7 +7,7 @@ import { useAuth } from "../hook/auth";
 
 
 export const ParticipantsDisplay = (participants) => {
-    const auth=useAuth();
+    const auth = useAuth();
     const partic = participants.participant;
     const [participantState, setParticipantState] = useState([partic]);
     const [editMode, setEditMode] = useState();
@@ -18,8 +18,8 @@ export const ParticipantsDisplay = (participants) => {
     const [error, setError] = useState(null);
 
     const onDelete = async () => {
-        
-        const res=await ParticipantApi.delete(partic.id, auth.token);
+
+        const res = await ParticipantApi.delete(partic.id, auth.token);
         setParticipantState(partic);
         if (res.error) {
             setError(res.error);
@@ -40,16 +40,16 @@ export const ParticipantsDisplay = (participants) => {
             const data = new FormData(e.target);
 
             const [name, surname, email, birth] = data.values();
-            
+
             const res = await ParticipantApi.update({ name, surname, email, birth }, partic.id, auth.token)
             console.log(res)
             if (res.err) {
                 setError(res.err);
                 return
             }
-            else{
-            alert('Congrats updated participant');
-            setError(null)
+            else {
+                alert('Congrats updated participant');
+                setError(null)
             }
 
         } catch (error) {
@@ -75,7 +75,7 @@ export const ParticipantsDisplay = (participants) => {
         setEditMode(false);
     };
 
-   
+
     const contentSection = editMode ? (
         <>
             <Form onSubmit={onEdit}>
@@ -95,7 +95,7 @@ export const ParticipantsDisplay = (participants) => {
                     value={surnameInput}
                     required
                 />
-                 <Field
+                <Field
                     onChange={onEmailChange}
                     label="Email"
                     placeholder="Email"
@@ -132,7 +132,7 @@ export const ParticipantsDisplay = (participants) => {
             <Paragra>{partic.email} </Paragra>
             <Paragra>{partic.age}</Paragra>
             <Container>{contentSection}</Container>
-            
+
         </Block>
     );
 }
