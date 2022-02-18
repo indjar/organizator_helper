@@ -7,7 +7,6 @@ body{
 }
 
 
-
 @media (prefers-reduced-motion: no-preference) {
   h1 {
     animation: h1-spin infinite 20s linear;
