@@ -50,7 +50,7 @@ const main = async () => {
         app.use("/users", usersRoute);
         app.use("/participants", participantsRoute);
         app.use("/events", eventsRoute);
-        app.use ("/eventParticipiants", eventsParcipiantsRoute);
+        app.use("/eventParticipiants", eventsParcipiantsRoute);
 
         app.listen(8080, () => {
             console.log("http://localhost:8080 started")

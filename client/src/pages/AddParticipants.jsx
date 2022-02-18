@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { useAuth } from "../hook/auth";
 import { ParticipantApi } from "../services/participantsApi.js";
 import { Container, Form, Title3 } from "../ui/Main";
@@ -9,26 +10,28 @@ import { Field } from "../organisms/Field";
 export const AddParticipant = () => {
     const auth = useAuth();
     const navigate = useNavigate();
-  
+    const [error, setError] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-          const data = new FormData(e.target);
+            const data = new FormData(e.target);
             const [name, surname, email, birth] = data.values();
             console.log(name, surname, email, birth)
-            
-            if (!name.length || !surname.length || !email.length || !birth.length )
+
+            if (!name.length || !surname.length || !email.length || !birth.length)
                 return console.error('Please enter data');
             const res = await ParticipantApi.create({ name, surname, email, birth }, auth.token)
 
             if (res.error) {
-                throw new Error(res.error[0].msg);
+                console.error(res.error);
+                setError(error)
+                throw new Error(res.error.msg);
             }
-            else{
-            alert('Congrats added new participant');
-            navigate("/participants")
+            else {
+                alert('Congrats added new participant');
+                navigate("/participants")
             }
 
         } catch (error) {
@@ -39,9 +42,10 @@ export const AddParticipant = () => {
         window.location.reload();
     };
 
+
     return (
         <Container>
-            
+
             <Form onSubmit={handleSubmit}>
                 <Title3>Add new participant</Title3>
                 <Field
@@ -69,6 +73,7 @@ export const AddParticipant = () => {
                     required
                 />
                 <Button type="submit">Add</Button>
+
             </Form>
 
         </Container>

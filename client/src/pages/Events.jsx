@@ -6,14 +6,15 @@ import { EventsDisplay } from "../components/Events";
 import { useAuth } from "../hook/auth";
 
 export const Events = () => {
-    const {token}=useAuth();
+  const { token } = useAuth();
   const [events, setEvent] = useState();
   const { state } = useLocation();
 
   const fetchEvents = async () => {
     const res = await EventsApi.getAll(token);
     if (res.error) {
-      alert(res.error);
+      console.error(res.error);
+      return state;
     }
     setEvent(res);
   };
@@ -38,9 +39,15 @@ export const Events = () => {
 
     if (state.added) {
       addEvent(state.added);
-      
+
     }
   }, [state]);
+
+  if (!token) {
+    return (
+      <Title3 style={{ marginTop: "180px", textAlign: "center" }}>
+        Please login or register</Title3>)
+  }
 
   if (!events) {
     return (
@@ -51,7 +58,7 @@ export const Events = () => {
   }
   if (events.length === 0) {
     return (
-      <Title3 style={{marginTop: "180px", textAlign: "center" }}>
+      <Title3 style={{ marginTop: "180px", textAlign: "center" }}>
         NO EVENTS ADDED YET <br /> Please add some
       </Title3>
     );
@@ -68,7 +75,7 @@ export const Events = () => {
   return (
     <Main>
       <div style={{ marginTop: "3rem" }}>
-        <Title3 style={{marginLeft:"45%"}}>Events</Title3>
+        <Title3 style={{ marginLeft: "45%" }}>Events</Title3>
         <List>{renderedEvents}</List>
       </div>
     </Main>

@@ -14,18 +14,18 @@ export const Nav = () => {
         </Link>
       </Button>
       <Button color="main">
-        <Link style={{ color: "#2F4F4F" }} to="/add_participant">
-          Add participant
+        <Link style={{ color: "#2F4F4F" }} to="/events">
+          Events list
         </Link>
       </Button>
       <Button >
-        <Link style={{ color: "#D4AF37" }} to={`/add_event`}>
-          Add event
+        <Link style={{ color: "#D4AF37" }} to={`/participants`}>
+          Participants
         </Link>
       </Button>
       <Button color="main">
-        <Link style={{ color: "#2F4F4F" }} to={`/addToEventList`}>
-          Add participant to event
+        <Link style={{ color: "#2F4F4F" }} to={`/eventList`}>
+          List adden events
         </Link>
       </Button>
       <Button>

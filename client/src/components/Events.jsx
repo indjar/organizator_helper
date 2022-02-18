@@ -14,7 +14,6 @@ export const EventsDisplay = (events) => {
 
     const onDelete = async () => {
         await EventsApi.delete(eventRes.id);
-        // console.log()
         setEventState(eventRes);
         window.location.reload();
     };
@@ -25,9 +24,9 @@ export const EventsDisplay = (events) => {
         e.preventDefault();
         try {
             const data = new FormData(e.target);
-            const id=eventRes.id
+            const id = eventRes.id
             const [event] = data.values();
-            
+
             const res = await EventsApi.update({ event }, id)
             console.log(res, id)
             if (res.error) throw new Error(res.error);
@@ -39,7 +38,7 @@ export const EventsDisplay = (events) => {
             alert(error);
 
         }
-        //window.location.reload();
+
     };
 
 
@@ -53,7 +52,7 @@ export const EventsDisplay = (events) => {
         setEditMode(false);
     };
 
-   
+
     const contentSection = editMode ? (
         <>
             <Form onSubmit={onEdit}>

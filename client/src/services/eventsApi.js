@@ -1,8 +1,8 @@
-const AUTH_URL=`http://localhost:8080/events`
+const AUTH_URL = `http://localhost:8080/events`
 
 export class EventsApi {
     static async getAll(token) {
-        const res = await fetch(`${AUTH_URL}`,{
+        const res = await fetch(`${AUTH_URL}`, {
             headers: {
                 "Content-Type": "application/json",
                 authorization: `Bearer ${token}`,

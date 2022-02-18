@@ -38,7 +38,7 @@ export default class Participants {
     };
 
     static async create({ name, surname, email, birth, added_by }) {
-        console.log(name, surname, email, birth, added_by)
+
         try {
             const connection = await getConnection();
             const query = `
@@ -62,7 +62,7 @@ export default class Participants {
                 FROM participants p`;
             const [data] = await connection.query(query);
             const participants = data;
- 
+
             if (!participants) return null;
 
             return JSON.stringify(participants.map((email) => new Participants(email)));
@@ -105,7 +105,7 @@ export default class Participants {
       `;
 
             await connection.query(query, [id]);
-            if (id!==query.id){
+            if (id !== query.id) {
                 return console.error('NULL');
             }
             return new Participants({ id });

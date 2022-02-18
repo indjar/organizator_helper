@@ -13,14 +13,14 @@ export class ParticipantApi {
   }
 
   static async create(participant, token) {
-      console.log( participant )
+    console.log(participant)
     const res = await fetch(`${AUTH_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify( participant ),
+      body: JSON.stringify(participant),
     });
 
     return res.json();
@@ -36,7 +36,7 @@ export class ParticipantApi {
     });
   }
 
-  static async update(participant,id, token) {
+  static async update(participant, id, token) {
     const res = await fetch(`${AUTH_URL}/${id}`, {
       method: "PATCH",
       headers: {

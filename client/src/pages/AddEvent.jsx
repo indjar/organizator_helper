@@ -15,8 +15,8 @@ export const AddEvent = () => {
         try {
             const data = new FormData(e.target);
             const [event] = data.values();
-            
-            if (!event.length )
+
+            if (!event.length)
                 return console.error('Please enter event');
             const res = await EventsApi.add({ event }, auth.token)
             if (res.err) throw new Error(res.err);

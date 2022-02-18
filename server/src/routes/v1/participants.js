@@ -75,7 +75,7 @@ router.patch("/:id",
             if (!participant) {
                 return res.status(400).send({ error: `No participant with ${id}` });
             }
-            
+
             res.send({
                 message: `Updated ${participant.id}`,
             });

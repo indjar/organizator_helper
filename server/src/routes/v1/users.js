@@ -25,7 +25,7 @@ router.post("/register",
                 user
             });
         } catch (error) {
-            if (error.msg==="Invalid value"){
+            if (error.msg === "Invalid value") {
                 res.status(402).send(`Invalid ${param}`)
             }
             res.status(500).send({

@@ -30,15 +30,16 @@ export const Register = () => {
         const res = await Auth.register(email, password);
 
         if (res.error) {
-            setError('Invalid email or password')
-            return;
-        
-       }
+            console.error(res.error)
+            setError(res.error)
+            return res.error;
+
+        }
         setError(null);
-        navigate("/");
+        navigate("/login");
     };
 
-    const errorShow=errors?<Title3>{errors}</Title3>:null
+    const errorShow = errors ? <Title3>{errors}</Title3> : null
 
     return (
         <Main>
@@ -50,7 +51,7 @@ export const Register = () => {
                     <Button type="submit" disabled={!email || !password}>
                         Register
                     </Button>
-                        {errorShow}
+                    {errorShow}
                 </Form>
             </Container>
         </Main>

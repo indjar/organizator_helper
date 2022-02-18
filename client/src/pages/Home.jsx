@@ -1,63 +1,53 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import { ParticipantApi } from "../services//participantsApi";
+import { ParticipantsEventsApi } from "../services/participantsEventsApi.js";
 import { List, Main, Title3 } from "../ui/Main";
-import { ParticipantsDisplay } from "../components/Participants";
+import { EventsStructuredDisplay } from "../components/EventsStructuredDisplay";
 import { useAuth } from "../hook/auth";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Button } from "../ui/Button";
 
-export const Participants = () => {
+export const Home = () => {
   const { token } = useAuth();
-  const [participant, setParticipant] = useState();
+  const [participantEvent, setParticipant] = useState([]);
   const { state } = useLocation();
-
+  const navigate = useNavigate();
 
   const fetchParticipants = async () => {
-    const res = await ParticipantApi.getAllParticipants(token);
+    const res = await ParticipantsEventsApi.getStructuredEventList(token);
     if (res.error) {
       console.error(res.error);
-      return state;
+      return token;
     }
     setParticipant(res);
-  };
-
-  const addParticipant = (par) => {
-    setParticipant([...participant, par]);
-  };
-
-  const deleteParticipant = (deleted) => {
-    setParticipant(participant.filter((par) => par !== deleted));
-    window.location.reload();
   };
 
   useEffect(() => {
     fetchParticipants();
     setParticipant();
+    if (!token) {
+      navigate("/login")
+      return <div>Please login or register</div>
+    }
     //eslint-disable-next-line
   }, []);
+
 
   useState(() => {
     if (!state) return <div>Something went wrong</div>;
 
-    if (state.added) {
-      addParticipant(state.added);
-    }
   }, [state]);
-  if (!token) {
-    return (
-      <Title3 style={{ marginTop: "180px", textAlign: "center" }}>
-        Please login or register</Title3>)
-  }
 
-  if (!participant) {
+
+
+  if (!participantEvent) {
     return (
       <Title3 style={{ marginTop: "180px", textAlign: "center" }}>
         Loading...
       </Title3>
     );
   }
-  if (participant.length === 0) {
+  if (participantEvent.length === 0) {
     return (
       <Title3 style={{ marginTop: "180px", textAlign: "center" }}>
         NO PARTICIPANTS ADDED YET <br /> Please add some
@@ -65,18 +55,23 @@ export const Participants = () => {
     );
   }
 
-  const renderedParticipants = participant.map((participant) => (
-    <ParticipantsDisplay
-      key={JSON.stringify(participant.id)}
+  const renderedParticipants = participantEvent.map((participant) => (
+    <EventsStructuredDisplay
+      key={participant.id}
       participant={participant}
-      onDelete={deleteParticipant}
     />
   ));
 
   return (
     <Main>
-      <div style={{ marginTop: "1rem" }}>
-        <div style={{ marginLeft: "10%" }}>
+      <div style={{ marginTop: "3rem" }}>
+
+        <div style={{ marginLeft: "24%" }}>
+          <Button color="main" style={{ padding: "30px" }}>
+            <Link style={{ color: "#2F4F4F", textDecoration: "none", textAlign: "center" }} to={`/add_event`}>
+              Add event
+            </Link>
+          </Button>
           <Button color="main" style={{ padding: "30px" }}>
             <Link style={{ color: "#2F4F4F", textDecoration: "none" }} to="/add_participant">
               Add participant
@@ -88,7 +83,7 @@ export const Participants = () => {
             </Link>
           </Button>
         </div>
-        <Title3 style={{ marginLeft: "45%" }}>Participants</Title3>
+        <Title3 style={{ marginLeft: "40%" }}>Events list</Title3>
         <List>{renderedParticipants}</List>
       </div>
     </Main>

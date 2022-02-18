@@ -1,16 +1,17 @@
 import { getConnection } from "../database/mysql.js";
 
 export default class Events {
-    constructor({ id, event }) {
+    constructor({ id, event, events_count }) {
         this.id = id;
         this.event = event;
+        this.events_count = events_count;
     }
 
     static async init() {
         try {
             const connection = await getConnection();
             const query = `
-      CREATE TABLE IF NOT EXISTS events (
+          CREATE TABLE IF NOT EXISTS events (
           id INTEGER AUTO_INCREMENT NOT NULL,
           event VARCHAR(1240) NOT NULL,
           PRIMARY KEY (id),
@@ -27,16 +28,16 @@ export default class Events {
         }
     };
 
-    static async create({id, event }) {
+    static async create({ id, event }) {
         try {
             const connection = await getConnection();
             const query = `
             INSERT INTO events
             VALUES (?, ?);
         `;
-        const [{ insertId }] = await connection.query(query, [id, event]);
+            const [{ insertId }] = await connection.query(query, [id, event]);
 
-            return new Events({event});
+            return new Events({ event });
         } catch (error) {
             console.log("Couldn't create event", error);
             throw error;
@@ -48,7 +49,7 @@ export default class Events {
             const connection = await getConnection();
             const query = `SELECT * FROM events`;
             const [data] = await connection.query(query);
-            const event= data;
+            const event = data;
 
             if (!event) return null;
 
@@ -61,9 +62,9 @@ export default class Events {
 
     static async update({ id, event }) {
         try {
-            console.log(id,event)
+
             const connection = await getConnection();
-            //console.log(id ,event);
+
             const query = `
         UPDATE events
         SET event=?
@@ -71,7 +72,7 @@ export default class Events {
         ;
       `;
             await connection.query(query, [event, id]);
-           
+
             return new Events({ event, id });
         } catch (error) {
             console.log(
@@ -92,7 +93,7 @@ export default class Events {
       `;
 
             await connection.query(query, [id]);
-            if (id!==query.id){
+            if (id !== query.id) {
                 return console.error('NULL');
             }
             return new Events({ id });

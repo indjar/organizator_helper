@@ -34,7 +34,7 @@ export const Login = () => {
 
         else {
             setError(null);
-            navigate("/events");
+            navigate("/");
         }
 
     };

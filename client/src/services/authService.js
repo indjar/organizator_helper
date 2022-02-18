@@ -1,8 +1,8 @@
-const AUTH_URL=`http://localhost:8080/users`;
+const AUTH_URL = `http://localhost:8080/users`;
 
 export class Auth {
-    static async register (email, password) {
-        const res=await fetch (`${AUTH_URL}/register`, {
+    static async register(email, password) {
+        const res = await fetch(`${AUTH_URL}/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -12,12 +12,12 @@ export class Auth {
                 password,
             }),
         });
-        
+
         return res.json();
     }
 
     static async login(email, password) {
-        const res=await fetch (`${AUTH_URL}/login`, {
+        const res = await fetch(`${AUTH_URL}/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

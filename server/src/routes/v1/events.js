@@ -29,7 +29,7 @@ router.post(
     async (req, res) => {
         try {
             const { event } = req.body;
-            
+
             const data = await Events.create({
                 event
             });
@@ -55,7 +55,7 @@ router.patch("/:id",
             const id = Number(req.params.id);
             const { event } = req.body;
 
-           
+
             const data = await Events.update({
                 id,
                 event,
