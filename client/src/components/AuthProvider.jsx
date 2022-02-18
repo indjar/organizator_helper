@@ -3,7 +3,7 @@ import { AuthContext } from "../hook/auth.js";
 import { Auth } from "../services/authService.js";
 // extract email from jwt
 const decodeToken = (token) => {
-   
+
     let email = null;
     if (token && token !== "undefined") {
         const tokenPayload = token.split(".")[1];
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     });
     const login = async (user, password) => {
         const res = await Auth.login(user, password);
-        console.log('login',{res});
+        console.log('login', { res });
         if (res.err) {
             console.error(res.err);
             setState({ error: res.err, token: null });
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
             email: null
         })
         sessionStorage.removeItem("token");
-
+        window.location.reload();
     };
     const value = { ...state, login, logout };
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
