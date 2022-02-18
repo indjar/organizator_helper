@@ -87,6 +87,7 @@ export const List = styled(list)`
     display: flex;
     flex-direction:column;
     align-items: center;
+    padding-bottom:5%;
     
 `;
 export const Paragra = styled(paragra)`
@@ -94,7 +95,7 @@ export const Paragra = styled(paragra)`
     color:#D4AF37;
 `;
 
-export const Label=styled(label)`
+export const Label = styled(label)`
     display: block; 
     font-size: 1.6rem; 
     font-weight: 700; 

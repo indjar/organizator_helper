@@ -20,6 +20,9 @@ const navi = ({ ...rest }) =>
 export const Item = ({ as, ...rest }) =>
     Element({ as, ...rest });
 
+const footer = ({ ...rest }) =>
+    Element({ as: "footer", ...rest });
+
 
 export const Navbar = styled(navbar)`
     display: flex;
@@ -55,5 +58,15 @@ export const Title3 = styled(title3)`
     text-align: center;
     overflow-wrap: break-word;
     margin-right: 20px;
+`
+    ;
+
+export const Footer = styled(footer)`
+    background-color:#D4AF37;
+    position:fixed;
+    bottom:0;
+    width:100%;
+    height:60px;;
+    box-shadow: 0 2px 2px #616161;
 `
     ;
